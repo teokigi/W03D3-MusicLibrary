@@ -29,8 +29,20 @@ if answer == "yes"
         end
 end
 
-artist.read_by_id
-
+p "look for artist by id? yes/no"
+answer = gets.chomp
+if answer == "yes"
+        p "searching for artist by id, please enter id#"
+        answer = gets.chomp
+        summary = Artist.read_by_id(answer)
+        if summary != nil
+        p "id:#{summary.id}| Artist: #{summary.name}"
+        answer = ""
+    else
+        p "Error:id##{answer} doesn't exist"
+        answer = ""
+    end
+end
 #Artist.update_by_id
 
 #artist.delete_by_id

@@ -22,10 +22,11 @@ class Artist
         return summary_hash.map{|artist|Artist.new(artist)}
     end
 
-    def read_by_id(id)
-        sql = "SELECT * FROM artist WHERE id = $1"
+    def self.read_by_id(id)
+        sql = "SELECT * FROM artists WHERE id = $1"
         values = [id]
-        summary_hash = SqlRunner.run(sql,values)
+        summary_hash = SqlRunner.run(sql,values).first()
+        return nil if summary_hash == nil
         return Artist.new(summary_hash)
     end
 end
