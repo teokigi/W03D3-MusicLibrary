@@ -72,9 +72,9 @@ while answer != "exit"
                 answer = ""
         end
 
-        p "list all artists? yes/no"
+        p "list all artists or albums? artists/albums/no"
         answer = gets.chomp
-        if answer == "yes"
+        if answer == "artists"
                 artists = Artist.read_all
                 if artists != nil
                         for artist in artists
@@ -83,10 +83,7 @@ while answer != "exit"
                 else
                 p "there are currently no arists in this table"
                 end
-        end
-        p "list all albums? yes/no"
-        answer = gets.chomp
-        if answer == "yes"
+        elsif answer == "albums"
                 albums = Album.read_all
                 if albums != nil
                         for album in albums
@@ -97,9 +94,9 @@ while answer != "exit"
                 end
         end
 
-        p "look for artist by id? yes/no"
+        p "look for artists/albums by id? artists/albums/no"
         answer = gets.chomp
-        if answer == "yes"
+        if answer == "artists"
                 p "searching for artist by id, please enter id#"
                 answer = gets.chomp
                 summary = Artist.read_by_id(answer)
@@ -110,7 +107,19 @@ while answer != "exit"
                         p "Error:id##{answer} doesn't exist"
                         answer = ""
                 end
+        elsif answer == "albums"
+            p "searching for album by id, please enter id#"
+            answer = gets.chomp
+            summary = Album.read_by_id(answer)
+            if summary != nil
+                    p "id:#{summary.id}| Album title:#{summary.title}| genre:#{summary.genre}|artist_id:#{summary.artist_id}"
+                    answer = ""
+            else
+                    p "Error:id##{answer} doesn't exist"
+                    answer = ""
+            end
         end
+
 
         p "update artist by id? yes/no"
         answer = gets.chomp
