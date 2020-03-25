@@ -11,7 +11,7 @@ artist05 = Artist.new({'name'=>'Nobuo Uematsu'})
 #Artist.save
 answer = ""
 while answer != "exit"
-        p "create artists? yes.no"
+        p "populate artists? yes.no"
         answer = gets.chomp
         if answer == "yes"
                 artist01.save
@@ -26,8 +26,12 @@ while answer != "exit"
         answer = gets.chomp
         if answer == "yes"
                 artists = Artist.read_all
-                for artist in artists
-                    p "id:#{artist.id}| Artist name: #{artist.name}"
+                if artists != nil
+                        for artist in artists
+                            p "id:#{artist.id}| Artist name: #{artist.name}"
+                        end
+                else
+                p "there are currently no arists in this table"
                 end
         end
 
@@ -57,7 +61,17 @@ while answer != "exit"
                 Artist.update_by_id(edit_artist)
                 p "artist updated"
         end
-        p "type 'exit' to quit, or hit return to repeat"
+
+    p "delete an artist?"
+    answer = gets.chomp
+    if answer == "yes"
+        p "enter artist id you wish to delete"
         answer = gets.chomp
+        Artist.delete_by_id(answer)
+        p "artist has been removed"
+    end
+
+
+    p "type 'exit' to quit, or hit return to repeat"
+    answer = gets.chomp
 end
-#artist.delete_by_id

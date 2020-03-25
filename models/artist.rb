@@ -19,6 +19,7 @@ class Artist
     def self.read_all
         sql = "SELECT * FROM artists"
         summary_hash = SqlRunner.run(sql,[])
+        return nil if summary_hash.first() == nil
         return summary_hash.map{|artist|Artist.new(artist)}
     end
 
