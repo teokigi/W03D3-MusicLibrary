@@ -48,13 +48,19 @@ class Album
     end
 
     def self.update_by_id(album)
-        sql = "UPDATE artists SET (title,genre,artist_id) = ($1,$2,$3)
+        sql = "UPDATE albums SET (title,genre,artist_id) = ($1,$2,$3)
                 WHERE id = $4"
         values = [  album['title'],
                     album['genre'],
                     album['artist_id'],
                     album['id']
                  ]
+        SqlRunner.run(sql,values)
+    end
+
+    def self.delete_by_id(id)
+        sql = "DELETE FROM albums WHERE id = $1"
+        values = [id]
         SqlRunner.run(sql,values)
     end
 end

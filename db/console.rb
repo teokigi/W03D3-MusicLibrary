@@ -5,8 +5,8 @@ require_relative('../models/album.rb')
 
 
 
-answer = ""
-while answer != "loop"
+answer = "loop"
+while answer == "loop"
         p "delete all table entries? yes/no"
         answer = gets.chomp
         if answer == "yes"
@@ -16,7 +16,7 @@ while answer != "loop"
                 answer = ""
         end
 
-        p "populate artists&albums? yes.no"
+        p "populate artists&albums? yes/no"
         answer = gets.chomp
         if answer == "yes"
                 artist01 = Artist.new({'name'=>'Michael Jackson'})
@@ -169,14 +169,20 @@ while answer != "loop"
                 p "album updated"
         end
 
-        p "delete an artist?"
+        p "delete an artist/album? art/alb/no"
         answer = gets.chomp
-        if answer == "yes"
+        if answer == "art"
                 p "enter artist id you wish to delete"
                 answer = gets.chomp
                 Artist.delete_by_id(answer)
                 p "artist has been removed"
+        elsif answer == "alb"
+                p "enter album id you wish to delete"
+                answer = gets.chomp
+                Album.delete_by_id(answer)
+                p "album has been removed"
         end
+
 
 
         p "Enter 'loop' to repeat, or any key to exit"
