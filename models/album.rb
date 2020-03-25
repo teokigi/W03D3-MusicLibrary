@@ -39,4 +39,22 @@ class Album
         return Album.new(summary_hash)
     end
 
+    def self.read_by_artist_id(id)
+        sql = "SELECT * FROM albums WHERE artist_id = $1"
+        values = [id]
+        summary_hash = SqlRunner.run(sql,values)
+        return nil if summary_hash.first() == nil
+        return summary_hash.map{|album|Album.new(album)}
+    end
+
+    def self.update_by_id(album)
+        sql = "UPDATE artists SET (title,genre,artist_id) = ($1,$2,$3)
+                WHERE id = $4"
+        values = [  album['title'],
+                    album['genre'],
+                    album['artist_id'],
+                    album['id']
+                 ]
+        SqlRunner.run(sql,values)
+    end
 end

@@ -6,7 +6,7 @@ require_relative('../models/album.rb')
 
 
 answer = ""
-while answer != "exit"
+while answer != "loop"
         p "delete all table entries? yes/no"
         answer = gets.chomp
         if answer == "yes"
@@ -72,9 +72,9 @@ while answer != "exit"
                 answer = ""
         end
 
-        p "list all artists or albums? artists/albums/no"
+        p "list all artists or albums? art/alb/no"
         answer = gets.chomp
-        if answer == "artists"
+        if answer == "art"
                 artists = Artist.read_all
                 if artists != nil
                         for artist in artists
@@ -83,7 +83,7 @@ while answer != "exit"
                 else
                 p "there are currently no arists in this table"
                 end
-        elsif answer == "albums"
+        elsif answer == "alb"
                 albums = Album.read_all
                 if albums != nil
                         for album in albums
@@ -92,38 +92,59 @@ while answer != "exit"
                 else
                 p "there are currently no albums in this table"
                 end
+                albums = nil
         end
 
-        p "look for artists/albums by id? artists/albums/no"
+        p "look for artist/album by id? art/alb/no"
         answer = gets.chomp
-        if answer == "artists"
+        if answer == "art"
                 p "searching for artist by id, please enter id#"
                 answer = gets.chomp
                 summary = Artist.read_by_id(answer)
                 if summary != nil
                         p "id:#{summary.id}| Artist: #{summary.name}"
                         answer = ""
+                        summary = nil
                 else
                         p "Error:id##{answer} doesn't exist"
                         answer = ""
+                        summary = nil
                 end
-        elsif answer == "albums"
+        elsif answer == "alb"
             p "searching for album by id, please enter id#"
             answer = gets.chomp
             summary = Album.read_by_id(answer)
             if summary != nil
                     p "id:#{summary.id}| Album title:#{summary.title}| genre:#{summary.genre}|artist_id:#{summary.artist_id}"
                     answer = ""
+                    summary = nil
             else
                     p "Error:id##{answer} doesn't exist"
                     answer = ""
+                    summary = nil
             end
+        end
+        p "look for albums owned by certain artist? yes/no"
+        answer = gets.chomp
+        if answer == "yes"
+                p "enter artist id"
+                answer = gets.chomp
+                summary = Album.read_by_artist_id(answer)
+                artist = Artist.read_by_id(answer)
+                if summary != nil
+                        p "The following albums were by #{artist.name}"
+                        for album in summary
+                                p "id:#{album.id}| Album title:#{album.title}| genre:#{album.genre}"
+                        end
+                else
+                p "there are currently no albums by that artist id in this table"
+                end
         end
 
 
-        p "update artist by id? yes/no"
+        p "update artist/album by id? art/alb/no"
         answer = gets.chomp
-        if answer == "yes"
+        if answer == "art"
                 p "enter artist id you wish to edit:"
                 artist_id = gets.chomp
                 p "enter artists new name"
@@ -131,6 +152,21 @@ while answer != "exit"
                 edit_artist = {'id' => artist_id, 'name' => artist_name}
                 Artist.update_by_id(edit_artist)
                 p "artist updated"
+        elsif answer == "alb"
+                p "enter album id you wish to edit:"
+                album_id = gets.chomp
+                p "enter the album title"
+                album_title = gets.chomp
+                p "enter its genre"
+                album_genre = gets.chomp
+                p "enter its artist id"
+                album_artist = gets.chomp
+                edit_album = {  'id'=>album_id,
+                                'title'=>album_title,
+                                'genre'=>album_genre,
+                                'artist_id'=>album_artist}
+                Album.update_by_id(edit_album)
+                p "album updated"
         end
 
         p "delete an artist?"
@@ -143,6 +179,6 @@ while answer != "exit"
         end
 
 
-        p "type 'exit' to quit, or hit return to repeat"
+        p "Enter 'loop' to repeat, or any key to exit"
         answer = gets.chomp
 end
