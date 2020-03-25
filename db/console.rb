@@ -1,11 +1,11 @@
 require_relative('../models/artist.rb')
 require_relative('../models/album.rb')
 
-artist01 = Artist.new{'name'=>'Michael Jackson'}
-artist02 = Artist.new{'name'=>'Weird Al Yankovic'}
-artist03 = Artist.new{'name'=>'Bon Jovi'}
-artist04 = Artist.new{'name'=>'Miyavi'}
-artist05 = Artist.new{'name'=>'Nobuo Uematsu'}
+artist01 = Artist.new({'name'=>'Michael Jackson'})
+artist02 = Artist.new({'name'=>'Weird Al Yankovic'})
+artist03 = Artist.new({'name'=>'Bon Jovi'})
+artist04 = Artist.new({'name'=>'Miyavi'})
+artist05 = Artist.new({'name'=>'Nobuo Uematsu'})
 
 #Artist.Delete_all
 #Artist.save
