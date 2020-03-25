@@ -9,14 +9,27 @@ artist05 = Artist.new({'name'=>'Nobuo Uematsu'})
 
 #Artist.Delete_all
 #Artist.save
-artist01.save
-artist02.save
-artist03.save
-artist04.save
-artist05.save
-#artist.read_all
+p "create artists? yes.no"
+answer = gets.chomp
+if answer == "yes"
+        artist01.save
+        artist02.save
+        artist03.save
+        artist04.save
+        artist05.save
+        answer = ""
+end
 
-#artist.read_by_id
+p "list all artists? yes/no"
+answer = gets.chomp
+if answer == "yes"
+        artists = Artist.read_all
+        for artist in artists
+            p "id:#{artist.id}| Artist name: #{artist.name}"
+        end
+end
+
+artist.read_by_id
 
 #Artist.update_by_id
 
