@@ -7,10 +7,47 @@ artist03 = Artist.new({'name'=>'Bon Jovi'})
 artist04 = Artist.new({'name'=>'Miyavi'})
 artist05 = Artist.new({'name'=>'Nobuo Uematsu'})
 
-#Artist.Delete_all
-#Artist.save
+album01 = Album.new({   'title'=>'Dangerous',
+                        'genre'=>'Rock n Pop',
+                        'artist_id'=> artist01.id})
+album02 = Album.new({   'title'=>'Thriller',
+                        'genre'=>'Rock n Pop',
+                        'artist_id'=> artist01.id})
+album03 = Album.new({   'title'=>'Mandatory Fun',
+                        'genre'=>'Parody',
+                        'artist_id'=> artist02.id})
+album04 = Album.new({   'title'=>'Running With Scissors',
+                        'genre'=> 'Parody',
+                        'artist_id'=> artist02.id})
+album05 = Album.new({   'title'=>'Slippery When Wet',
+                        'genre'=> 'Rock',
+                        'artist_id'=> artist03.id})
+album06 = Album.new({   'title'=>'Keep The Faith',
+                        'genre'=> 'Rock',
+                        'artist_id'=> artist03.id})
+album07 = Album.new({   'title'=>'Firebird',
+                        'genre'=>'J Rock',
+                        'artist_id'=> artist04.id})
+album08 = Album.new({   'title'=>'Miyavism',
+                        'genre'=>'J Rock',
+                        'artist_id'=> artist04.id})
+album09 = Album.new({   'title'=>'Music of Final Fantasy III',
+                        'genre'=>'Game',
+                        'artist_id'=>artist05.id})
+album10 = Album.new({   'title'=>'Final Fantasy VI Soundtrack',
+                        'genre'=>'game',
+                        'artist_id'=> artist05.id})
+
 answer = ""
 while answer != "exit"
+        p "delete all table entries? yes/no"
+        answer = gets.chomp
+        if answer == "yes"
+                Artist.delete_all
+                p "cleared all artists"
+                answer = ""
+        end
+        
         p "populate artists? yes.no"
         answer = gets.chomp
         if answer == "yes"
@@ -19,6 +56,16 @@ while answer != "exit"
                 artist03.save
                 artist04.save
                 artist05.save
+                album01.save
+                album02.save
+                album03.save
+                album04.save
+                album05.save
+                album06.save
+                album07.save
+                album08.save
+                album09.save
+                album10.save
                 answer = ""
         end
 
