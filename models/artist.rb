@@ -29,4 +29,12 @@ class Artist
         return nil if summary_hash == nil
         return Artist.new(summary_hash)
     end
+
+    def self.update_by_id(artist)
+        sql = "UPDATE artists SET name = $1 WHERE id = $2"
+        values = [  artist['name'],
+                    artist['id']
+                 ]
+        SqlRunner.run(sql,values)
+    end
 end
