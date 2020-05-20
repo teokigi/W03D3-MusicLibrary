@@ -20,6 +20,7 @@
  - class objects with psql-crud functionality
  - Seperating Class objects into seperate
  - Main ruby file that manages all functionality
+ - one to many relational database.
  
  ## Summary
  
